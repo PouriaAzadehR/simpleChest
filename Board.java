@@ -18,7 +18,7 @@ public class Board {
      * this is a constructor
      */
     public Board(){
-        board=new Element[10][5];
+        board=new Element[5][10];
         makeBoard();
     }
 
@@ -54,7 +54,7 @@ public class Board {
                 if (board[j][i]!=null)
                     System.out.print("("+board[j][i].getCoordination()+"):"+board[j][i].toString()+"("+board[j][i].getColor()+")"+"  ");
                 else
-                    System.out.println("empty block");
+                    System.out.print("empty block");
             }
             System.out.println();
         }
