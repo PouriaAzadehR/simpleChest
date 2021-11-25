@@ -41,27 +41,59 @@ public class ChestGame  {
     }
 
     public boolean freeWay(Element element,int x , int y){
-        if (element instanceof Horse)
-            return isEnemy(element.getColor(),x,y);
+        if (element instanceof Horse) {
+            if (isElement(x,y))
+                return isEnemy(element.getColor(), x, y);
+            return true;
+        }
         else if (element instanceof Castle){
             if (element.getCoordination()/10==x){
-                for (int i = element.getCoordination()%10+1; i <=y ; i++) {
-                    if (isElement(x,i)){
-                        return false;
+                if (y>element.getCoordination()%10) {
+                    for (int i = element.getCoordination() % 10 + 1; i <= y; i++) {
+                        if (isElement(x, i)) {
+                            if (i==y)
+                                return true;
+                            return false;
+                        }
+                    }
+                }
+                else {
+                    for (int i = (element.getCoordination() % 10 - 1); i >= y; i--) {
+                        if (isElement(x, i)) {
+                            if (i==y)
+                                return true;
+                            return false;
+                        }
                     }
                 }
             }
             else {
-                for (int i = element.getCoordination()/10+1; i <=x ; i++) {
-                    if (isElement(i,y)){
-                        return false;
+                if (x>element.getCoordination()/10) {
+                    for (int i = element.getCoordination() / 10 + 1; i <= x; i++) {
+                        if (isElement(i, y)) {
+                            if (i==x)
+                                return true;
+                            return false;
+                        }
+                    }
+                }
+                else {
+                    for (int i = element.getCoordination() / 10 - 1; i >= x; i--) {
+                        if (isElement(i, y)) {
+                            if (i==x)
+                                return true;
+                            return false;
+                        }
                     }
                 }
             }
             return true;
         }
         else {
-            return isEnemy(element.getColor(),x,y);
+            if (isElement(x,y))
+                return isEnemy(element.getColor(),x,y);
+            else
+                return true;
         }
     }
 
@@ -81,12 +113,35 @@ public class ChestGame  {
             int tempCoordination=userElement.move();
             if (!freeWay(userElement,tempCoordination/10,tempCoordination%10)) {
                 System.out.println("not valid input");
+                System.out.println("2");
                 continue;
             }
             setGameBoard(userElement,tempCoordination/10,tempCoordination%10);
             break;
         }while (true);
     }
+
+    public boolean isEndB(){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (getGameBoard().board[j][i]!=null)
+                    if (getGameBoard().board[j][i].getColor()=='w')
+                        return false;
+            }
+        }
+        return true;
+    }
+    public boolean isEndw(){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (getGameBoard().board[j][i]!=null)
+                    if (getGameBoard().board[j][i].getColor()=='b')
+                        return false;
+            }
+        }
+        return true;
+    }
+
 
     /**
      * this is a getter method

@@ -20,8 +20,9 @@ public class Horse extends Element implements Actions{
             System.out.println("this is your horse");
             System.out.println("enter direction of your horizontal move");
             Scanner scanner = new Scanner(System.in);
-            String horizontal = scanner.next();
-            String vertical = scanner.next();
+            String horizontal = scanner.nextLine();
+            String vertical="" +
+                    "" ;
             int verticalMove = 0;
             System.out.println("please num of horizontal move 1 or 2");
             int numHorizontal = scanner.nextInt();
@@ -44,7 +45,7 @@ public class Horse extends Element implements Actions{
             else if (vertical.charAt(0) == 'd')
                 setCoordination(getCoordination() + verticalMove);
 
-            if (getCoordination() / 10 > oldCoordination / 10 || (getCoordination()>99)){
+            if (getCoordination() / 10 > oldCoordination / 10 || (getCoordination()>99) || getCoordination()<0){
                 System.out.println("not valid input");
                 setCoordination(oldCoordination);
                 continue;

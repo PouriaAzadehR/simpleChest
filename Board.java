@@ -49,12 +49,19 @@ public class Board {
      * this is a method for showing board
      */
     public void showBoard(){
-        for (int i = 0; i < 10; i++) {
+        String tempCoordination;
+        for (int i = 9; i >=0; i--) {
             for (int j = 0; j < 5; j++) {
-                if (board[j][i]!=null)
-                    System.out.print("("+board[j][i].getCoordination()+"):"+board[j][i].toString()+"("+board[j][i].getColor()+")"+"  ");
+                if (board[j][i]!=null) {
+                    if (board[j][i].getCoordination() < 10) {
+                        tempCoordination = "0" + board[j][i].getCoordination();
+                        System.out.print("(" + tempCoordination + "):" + board[j][i].toString() + "(" + board[j][i].getColor() + ")" + "  ");
+                    }
+                    else
+                        System.out.print("(" + board[j][i].getCoordination() + "):" + board[j][i].toString() + "(" + board[j][i].getColor() + ")" + "  ");
+                }
                 else
-                    System.out.print("empty block");
+                    System.out.print("empty block  ");
             }
             System.out.println();
         }

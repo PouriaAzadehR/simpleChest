@@ -41,24 +41,28 @@ public abstract class Element implements Actions {
                 tempCoordination+=numMoves;
                 if (tempCoordination/10>coordination/10)
                     return false;
+                break;
             }
             //d for down
             case 'd': {
                 tempCoordination-=numMoves;
                 if (tempCoordination/10<coordination/10)
                     return false;
+                break;
             }
             //r for right
             case 'r':{
                 tempCoordination+=numMoves*10;
-                if (tempCoordination>99)
+                if (tempCoordination>99 || getCoordination()<0)
                     return false;
+                break;
             }
             //l for left
             case 'l' :{
                 tempCoordination-=numMoves*10;
-                if (tempCoordination<0)
+                if (tempCoordination<0 || tempCoordination>99)
                     return false;
+                break;
             }
         }
         return true;
@@ -74,21 +78,25 @@ public abstract class Element implements Actions {
             case 'u':{
                 if (validMoveRangeBoard())
                     tempcoordination+=numMoves;
+                break;
             }
             //d for down
             case 'd':{
                 if (validMoveRangeBoard())
                     tempcoordination-=numMoves;
+                break;
             }
             //r for right
             case 'r':{
                 if (validMoveRangeBoard())
                     tempcoordination+=numMoves*10;
+                break;
             }
             //l for left
             case 'l':{
                 if (validMoveRangeBoard())
                     tempcoordination-=numMoves*10;
+                break;
             }
         }
         return tempcoordination;
