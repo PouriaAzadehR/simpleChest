@@ -25,4 +25,9 @@ public class Soldier extends Element implements Actions{
             return moveBoard();
         }while (true);
     }
+
+    @Override
+    public String toString() {
+        return "Soldier";
+    }
 }

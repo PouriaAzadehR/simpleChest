@@ -31,4 +31,9 @@ public class Castle extends Element implements Actions{
             return moveBoard();
         }while (true);
     }
+
+    @Override
+    public String toString() {
+        return "Castle";
+    }
 }

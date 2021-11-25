@@ -35,4 +35,9 @@ public class King extends Element implements Actions {
             return moveBoard();
         }while (true);
     }
+
+    @Override
+    public String toString() {
+        return "King";
+    }
 }

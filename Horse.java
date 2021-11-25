@@ -55,4 +55,9 @@ public class Horse extends Element implements Actions{
         setCoordination(oldCoordination);
         return newCoordianion;
     }
+
+    @Override
+    public String toString() {
+        return "Horse";
+    }
 }

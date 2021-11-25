@@ -87,4 +87,12 @@ public class ChestGame  {
             break;
         }while (true);
     }
+
+    /**
+     * this is a getter method
+     * @return gameBoard
+     */
+    public Board getGameBoard() {
+        return gameBoard;
+    }
 }
