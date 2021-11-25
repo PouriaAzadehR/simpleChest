@@ -25,6 +25,37 @@ public class Element {
         this.coordination=coordination;
     }
 
+    private boolean validMove(int numMoves,char direction){
+        int tempCoordination=coordination;
+        switch (direction){
+            //u for up
+            case 'u' :{
+                tempCoordination++;
+                if (tempCoordination/10>coordination/10)
+                    return false;
+            }
+            //d for down
+            case 'd': {
+                tempCoordination--;
+                if (tempCoordination/10<coordination/10)
+                    return false;
+            }
+            //r for right
+            case 'r':{
+                tempCoordination+=10;
+                if (tempCoordination>99)
+                    return false;
+            }
+            //l for left
+            case 'l' :{
+                tempCoordination-=10;
+                if (tempCoordination<0)
+                    return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * this is a method for changing place of each element in board
      * @param gameBoard of chest
@@ -34,13 +65,26 @@ public class Element {
     public void moveBoard(Board gameBoard,int numMoves,char direction){
         switch (direction){
             //u for up
-            case 'u'-> coordination++;
+            case 'u':{
+                if (validMove(numMoves,direction))
+                    coordination++;
+            }
             //d for down
-            case 'd'-> coordination--;
+            case 'd':{
+                if (validMove(numMoves,direction))
+                    coordination--;
+            }
             //r for right
-            case 'r'-> coordination+=10;
+            case 'r':{
+                if (validMove(numMoves,direction))
+                    coordination+=10;
+            }
             //l for left
-            case 'l'-> coordination-=10;
+            case 'l':{
+                if (validMove(numMoves,direction))
+                    coordination-=10;
+            }
+            gameBoard.board[coordination/10][coordination%10]=this;
         }
     }
 
