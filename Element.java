@@ -7,13 +7,19 @@ package com.company;
  * @version 1
  * @since today
  */
-public class Element {
+public abstract class Element implements Actions {
 
     //it could be w for white and b for black
     private char color;
 
     //it is 2 digit number which represent coordination of element
     private int coordination;
+
+    //direction of move
+    private char direction;
+
+    //number of moves
+    private int numMoves;
 
     /**
      * this is a constructor
@@ -25,18 +31,9 @@ public class Element {
         this.coordination=coordination;
     }
 
-    /**
-     * this is a method which check wether the element of a coordination is enemy or not
-     * @param gameBoard of chest
-     * @param x of element
-     * @param y element
-     * @return a true if it is enemy
-     */
-    private boolean isEnemy(Board gameBoard ,int x , int y){
-        return gameBoard.board[x][y].color!=this.color;
-    }
 
-    private boolean validMoveRangeBoard(int numMoves,char direction){
+
+    public boolean validMoveRangeBoard(){
         int tempCoordination=coordination;
         switch (direction){
             //u for up
@@ -69,30 +66,28 @@ public class Element {
 
     /**
      * this is a method for changing place of each element in board
-     * @param numMoves of which element should go
-     * @param direction of moves which element should go
      */
-    public int moveBoard(int numMoves,char direction){
+    public int moveBoard(){
         int tempcoordination=coordination;
         switch (direction){
             //u for up
             case 'u':{
-                if (validMoveRangeBoard(numMoves,direction))
+                if (validMoveRangeBoard())
                     tempcoordination+=numMoves;
             }
             //d for down
             case 'd':{
-                if (validMoveRangeBoard(numMoves,direction))
+                if (validMoveRangeBoard())
                     tempcoordination-=numMoves;
             }
             //r for right
             case 'r':{
-                if (validMoveRangeBoard(numMoves,direction))
+                if (validMoveRangeBoard())
                     tempcoordination+=numMoves*10;
             }
             //l for left
             case 'l':{
-                if (validMoveRangeBoard(numMoves,direction))
+                if (validMoveRangeBoard())
                     tempcoordination-=numMoves*10;
             }
         }
@@ -113,5 +108,45 @@ public class Element {
      */
     public int getCoordination() {
         return coordination;
+    }
+
+    /**
+     * this is a setter method
+     * @param coordination new one
+     */
+    public void setCoordination(int coordination) {
+        this.coordination = coordination;
+    }
+
+    /**
+     * this is a getter method
+     * @return direction of move
+     */
+    public char getDirection() {
+        return direction;
+    }
+
+    /**
+     * this is a getter method
+     * @return num moves
+     */
+    public int getNumMoves() {
+        return numMoves;
+    }
+
+    /**
+     * this is setter method
+     * @param direction of move
+     */
+    public void setDirection(char direction) {
+        this.direction = direction;
+    }
+
+    /**
+     * this is a setter method
+     * @param numMoves of moves
+     */
+    public void setNumMoves(int numMoves) {
+        this.numMoves = numMoves;
     }
 }

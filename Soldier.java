@@ -13,8 +13,16 @@ public class Soldier extends Element implements Actions{
     }
 
     @Override
-    public void move() {
-        System.out.println("this is your soldier");
-        moveBoard(1,'u');
+    public int move() {
+        do {
+            System.out.println("this is your soldier");
+            setNumMoves(1);
+            setDirection('u');
+            if (!validMoveRangeBoard()){
+                System.out.println("not valid input");
+                continue;
+            }
+            return moveBoard();
+        }while (true);
     }
 }

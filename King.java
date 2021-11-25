@@ -20,11 +20,19 @@ public class King extends Element implements Actions {
     }
 
     @Override
-    public void move() {
-        System.out.println("this is your king ");
-        System.out.println("please direction of your move");
-        Scanner scanner=new Scanner(System.in);
-        String direction =scanner.next();
-        moveBoard(1,direction.charAt(0));
+    public int move() {
+        do {
+            System.out.println("this is your king ");
+            System.out.println("please direction of your move");
+            Scanner scanner = new Scanner(System.in);
+            String direction = scanner.next();
+            setNumMoves(1);
+            setDirection(direction.charAt(0));
+            if (!validMoveRangeBoard()){
+                System.out.println("not valid input");
+                continue;
+            }
+            return moveBoard();
+        }while (true);
     }
 }
