@@ -25,30 +25,41 @@ public class Element {
         this.coordination=coordination;
     }
 
-    private boolean validMove(int numMoves,char direction){
+    /**
+     * this is a method which check wether the element of a coordination is enemy or not
+     * @param gameBoard of chest
+     * @param x of element
+     * @param y element
+     * @return a true if it is enemy
+     */
+    private boolean isEnemy(Board gameBoard ,int x , int y){
+        return gameBoard.board[x][y].color!=this.color;
+    }
+
+    private boolean validMoveRangeBoard(int numMoves,char direction){
         int tempCoordination=coordination;
         switch (direction){
             //u for up
             case 'u' :{
-                tempCoordination++;
+                tempCoordination+=numMoves;
                 if (tempCoordination/10>coordination/10)
                     return false;
             }
             //d for down
             case 'd': {
-                tempCoordination--;
+                tempCoordination-=numMoves;
                 if (tempCoordination/10<coordination/10)
                     return false;
             }
             //r for right
             case 'r':{
-                tempCoordination+=10;
+                tempCoordination+=numMoves*10;
                 if (tempCoordination>99)
                     return false;
             }
             //l for left
             case 'l' :{
-                tempCoordination-=10;
+                tempCoordination-=numMoves*10;
                 if (tempCoordination<0)
                     return false;
             }
@@ -66,23 +77,23 @@ public class Element {
         switch (direction){
             //u for up
             case 'u':{
-                if (validMove(numMoves,direction))
-                    coordination++;
+                if (validMoveRangeBoard(numMoves,direction))
+                    coordination+=numMoves;
             }
             //d for down
             case 'd':{
-                if (validMove(numMoves,direction))
-                    coordination--;
+                if (validMoveRangeBoard(numMoves,direction))
+                    coordination-=numMoves;
             }
             //r for right
             case 'r':{
-                if (validMove(numMoves,direction))
-                    coordination+=10;
+                if (validMoveRangeBoard(numMoves,direction))
+                    coordination+=numMoves*10;
             }
             //l for left
             case 'l':{
-                if (validMove(numMoves,direction))
-                    coordination-=10;
+                if (validMoveRangeBoard(numMoves,direction))
+                    coordination-=numMoves*10;
             }
             gameBoard.board[coordination/10][coordination%10]=this;
         }
