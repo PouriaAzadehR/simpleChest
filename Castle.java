@@ -14,13 +14,13 @@ public class Castle extends Element implements Actions{
     }
 
     @Override
-    public void move(Board gameBoard) {
+    public void move() {
         System.out.println("this is your castle");
         System.out.println("which direction do u want to move(r,l,u,d)");
         Scanner scanner=new Scanner(System.in);
         String direction = scanner.next();
         System.out.println("please enter number of your move");
         int numMove=scanner.nextInt();
-        moveBoard(gameBoard,numMove,direction.charAt(0));
+        moveBoard(numMove,direction.charAt(0));
     }
 }

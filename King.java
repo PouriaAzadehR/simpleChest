@@ -20,11 +20,11 @@ public class King extends Element implements Actions {
     }
 
     @Override
-    public void move(Board gameBoard) {
+    public void move() {
         System.out.println("this is your king ");
         System.out.println("please direction of your move");
         Scanner scanner=new Scanner(System.in);
         String direction =scanner.next();
-        moveBoard(gameBoard,1,direction.charAt(0));
+        moveBoard(1,direction.charAt(0));
     }
 }

@@ -9,5 +9,5 @@ package com.company;
  */
 public interface Actions {
 
-    void move(Board gameBoard);
+    void move();
 }

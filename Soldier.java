@@ -13,8 +13,8 @@ public class Soldier extends Element implements Actions{
     }
 
     @Override
-    public void move(Board gameBoard) {
+    public void move() {
         System.out.println("this is your soldier");
-        moveBoard(gameBoard,1,'u');
+        moveBoard(1,'u');
     }
 }

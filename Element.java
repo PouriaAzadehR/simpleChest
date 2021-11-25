@@ -69,34 +69,34 @@ public class Element {
 
     /**
      * this is a method for changing place of each element in board
-     * @param gameBoard of chest
      * @param numMoves of which element should go
      * @param direction of moves which element should go
      */
-    public void moveBoard(Board gameBoard,int numMoves,char direction){
+    public int moveBoard(int numMoves,char direction){
+        int tempcoordination=coordination;
         switch (direction){
             //u for up
             case 'u':{
                 if (validMoveRangeBoard(numMoves,direction))
-                    coordination+=numMoves;
+                    tempcoordination+=numMoves;
             }
             //d for down
             case 'd':{
                 if (validMoveRangeBoard(numMoves,direction))
-                    coordination-=numMoves;
+                    tempcoordination-=numMoves;
             }
             //r for right
             case 'r':{
                 if (validMoveRangeBoard(numMoves,direction))
-                    coordination+=numMoves*10;
+                    tempcoordination+=numMoves*10;
             }
             //l for left
             case 'l':{
                 if (validMoveRangeBoard(numMoves,direction))
-                    coordination-=numMoves*10;
+                    tempcoordination-=numMoves*10;
             }
-            gameBoard.board[coordination/10][coordination%10]=this;
         }
+        return tempcoordination;
     }
 
     /**
